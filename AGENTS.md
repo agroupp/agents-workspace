@@ -17,6 +17,12 @@
 - Update `Last updated` using the current local date in `YYYY-MM-DD` format.
 - Use the `session-snapshot` skill whenever snapshot context is requested or the snapshot needs to be initialized, read, or updated.
 
+## Plan Execution Hooks
+
+- Treat documents in `doc/plans` as phased execution guides, not loose task lists.
+- Use the `plan-executor` skill whenever asked to implement from a plan document, continue a multi-phase plan, or choose the next phase from an approved plan.
+- Keep one coordinating agent responsible for sequencing and validation; use subagents only for bounded, disjoint work inside the active phase.
+
 ## Detailed Rule Files
 
 - Keep `AGENTS.md` as the concise index of durable rules. Move detailed, domain-specific guidance into `.agents/rules` and link it here.
