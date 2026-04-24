@@ -20,7 +20,7 @@
 ## Detailed Rule Files
 
 - Keep `AGENTS.md` as the concise index of durable rules. Move detailed, domain-specific guidance into `.agents/rules` and link it here.
-- Read [doc/v1-execution-substrate-decisions.md](doc/v1-execution-substrate-decisions.md) before changing workspace structure, `.agents` conventions, project kinds, runner abstractions, CLI surface, or container packaging expectations.
+- Read [doc/v1-decisions.md](doc/v1-decisions.md) before changing workspace structure, `.agents` conventions, project kinds, runner abstractions, CLI surface, or container packaging expectations.
 
 ## Operating Rules
 

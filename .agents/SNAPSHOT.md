@@ -5,22 +5,24 @@
 
 ## What was done
 
-- Added the initial decision memo at `doc/v1-execution-substrate-decisions.md`.
-- Captured the V1 thesis as a Codex-first workspace contract and generator for autonomous systems.
-- Recorded key decisions around project kinds, runner abstraction, safety boundary, packaging scope, and CLI-first scaffolding.
-- Updated `AGENTS.md` so the durable workspace rules now match the execution-substrate decisions.
+- Added the initial decision memo at `doc/v1-decisions.md`.
+- Wrote `doc/v1-prd.md` as a best-effort PRD derived from the decision memo.
+- Wrote `doc/plans/v1-implementation.md` as a vertical-slice implementation plan derived from the PRD.
+- Resolved proposed V1 requirements for root and project manifests, runner contract behavior, CLI lifecycle, verification scaffolding, packaging posture, and safe-default capabilities.
+- Kept the PRD and plan aligned with the workspace rules: tool-agnostic project support, CLI-first generation, and advisory-by-default execution.
 
 ## What is in progress
 
-- PRD drafting is next and should build directly on the execution-substrate decisions document.
+- The PRD and implementation plan are drafted; implementation has not started yet.
 
 ## Known issues
 
-- The exact manifest schemas for `codex.workspace.toml` and `codex.project.toml` are still undefined.
-- The `CodexRunner` invocation model and scheduling contract are still open design questions.
+- The PRD defines proposed manifest fields and runner behavior, but nothing is implemented yet to validate the contract.
+- The repository still has no canonical template, test, or CLI implementation prior art; the first implementation pass will establish those patterns.
+- The implementation plan still carries open questions around schedule syntax, artifact/run-record location, and how much runner configurability V1 should expose initially.
 
 ## Next steps
 
-- Turn the decision memo into a PRD with explicit requirements, interfaces, and acceptance criteria.
-- Define the root and per-project manifest schemas.
-- Specify CLI command behavior, runner lifecycle, and verification scaffolding for each project kind.
+- Review the PRD and implementation plan together and adjust any schema, runner, or command-surface decisions that should change before coding.
+- Start Phase 1 from the plan: workspace bootstrap, versioned root manifest, and `doctor` preflight behavior.
+- Implement later phases in order: `skill-pack`, `scheduled-job`, `service`, then packaging and CI parity.
