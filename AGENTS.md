@@ -1,5 +1,11 @@
 ## Project description
 
+- This repository defines a Codex-first workspace contract and generator for building autonomous systems from skills, scripts, conventional code, and portable containers.
+- The core value is a ready-to-use Codex development environment where the agent already understands the workspace conventions, helper assets, and execution model.
+- The workspace must remain tool-agnostic: support skills-only projects, Python or TypeScript services, and hybrid systems without requiring a single monorepo or language ecosystem.
+- Initial first-class project kinds are `skill-pack`, `scheduled-job`, and `service`.
+- Default product posture is artifact generation and decision support. High-risk irreversible actions should remain behind deterministic code paths or explicit approval layers.
+
 ## Session Memory Hooks
 
 - Start hook: after reading `AGENTS.md`, read `.agents/SNAPSHOT.md` before exploring the project so the agent starts from the latest durable context.
@@ -14,7 +20,7 @@
 ## Detailed Rule Files
 
 - Keep `AGENTS.md` as the concise index of durable rules. Move detailed, domain-specific guidance into `.agents/rules` and link it here.
-- Read [.agents/rules/typescript-dependencies.md](.agents/rules/typescript-dependencies.md) before changing TypeScript project structure, workspace package dependencies, `tsconfig*.json`, or Nx project graph behavior.
+- Read [doc/v1-execution-substrate-decisions.md](doc/v1-execution-substrate-decisions.md) before changing workspace structure, `.agents` conventions, project kinds, runner abstractions, CLI surface, or container packaging expectations.
 
 ## Operating Rules
 
@@ -22,6 +28,10 @@
 - Store project documents in `doc`, including PRDs, plans, task lists, architecture notes, and decision records.
 - Modify only files and patterns directly related to the user's request.
 - If you notice an unrelated improvement opportunity, mention it but do not implement it.
+- Preserve the tool-agnostic workspace design. Do not introduce mandatory Nx, Node.js, pnpm, or TypeScript assumptions unless the user explicitly requests that direction.
+- Prefer small workspace contracts and runner abstractions over hard-wired raw Codex invocation details.
+- Keep deployment work scoped to portable container packaging unless the user explicitly asks for infrastructure or hosting workflows.
+- Treat `codex.workspace.toml` and `codex.project.toml` as planned interfaces. Until the PRD defines them, avoid inventing incompatible schemas without documenting the decision in `doc`.
 
 ## Investigation and Debugging
 
