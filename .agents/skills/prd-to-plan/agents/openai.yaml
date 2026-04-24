@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD to Plan"
+  short_description: "Convert PRDs into agent-first implementation plans"
+  default_prompt: "Use $prd-to-plan to convert this PRD into an agent-first vertical-slice implementation plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Snapshot"
+  short_description: "Maintain project memory between sessions"
+  default_prompt: "Read or update the project snapshot for session continuity."

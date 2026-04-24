@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Workflow"
+  short_description: "Prepare safe focused commits"
+  default_prompt: "Commit the current work safely with a generated title and description."
