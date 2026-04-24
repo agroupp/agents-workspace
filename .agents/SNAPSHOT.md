@@ -5,33 +5,25 @@
 
 ## What was done
 
-- Added the initial decision memo at `doc/v1-decisions.md`.
-- Wrote `doc/v1-prd.md` as a best-effort PRD derived from the decision memo.
-- Wrote `doc/plans/v1-implementation.md` as a vertical-slice implementation plan derived from the PRD.
-- Resolved proposed V1 requirements for root and project manifests, runner contract behavior, CLI lifecycle, verification scaffolding, packaging posture, and safe-default capabilities.
-- Kept the PRD and plan aligned with the workspace rules: tool-agnostic project support, CLI-first generation, and advisory-by-default execution.
-- Reviewed `doc/plans/v1-implementation.md` and defined a recommended execution workflow for phased implementation.
-- Identified a gap between plan creation guidance and plan execution guidance: the repo has `prd-to-plan`, but not a dedicated agent workflow for consuming plans phase by phase.
-- Added a new repo-local skill at `.agents/skills/plan-executor` for executing plan documents phase by phase.
-- Updated `AGENTS.md` to require `plan-executor` when agents implement from plan documents or continue multi-phase plans.
-- Manually scaffolded and validated the new skill because Python is not available in the current shell for `skill-creator`'s helper scripts.
+- Implemented Phase 1 of `doc/plans/v1-implementation.md` in TypeScript using Node 24's built-in type-stripping support.
+- Added a Phase 1 CLI at `src/cli.ts` with `init` and `doctor` command flows plus supporting manifest, bootstrap, and preflight modules in `src/`.
+- Added a versioned `codex.workspace.toml` contract model with workspace defaults, runner registration, shared asset declarations, and project root discovery.
+- Added `tests/phase1.test.ts` to validate the clean bootstrap path, missing required manifest fields, and invalid default runner references.
+- Updated `README.md` and the Phase 1 plan checkboxes to reflect the new command surface and completed validation work.
 
 ## What is in progress
 
-- The PRD and implementation plan are drafted; implementation has not started yet.
-- The repo now has a reusable skill for plan execution; implementation work from `doc/plans/v1-implementation.md` has not started yet.
+- Phase 1 is complete and validated.
+- Phase 2 has not started yet; the next slice is `skill-pack` project generation plus `run`, `verify`, and not-applicable `pack` behavior.
 
 ## Known issues
 
-- The PRD defines proposed manifest fields and runner behavior, but nothing is implemented yet to validate the contract.
-- The repository still has no canonical template, test, or CLI implementation prior art; the first implementation pass will establish those patterns.
-- The implementation plan still carries open questions around schedule syntax, artifact/run-record location, and how much runner configurability V1 should expose initially.
-- The repo now has a `plan-executor` skill, but its conventions for plan status updates and handoff should still be refined through real usage.
-- Python helper scripts from the `skill-creator` workflow could not be run in this environment because neither `python` nor `py` is available on PATH.
+- Phase 2 and later still carry open contract questions around schedule syntax, artifact/run-record location, and how much runner configurability V1 should expose initially.
+- The current environment's `npm` command is misconfigured (`npm --version` fails), so validation currently relies on direct `node --experimental-strip-types ...` commands instead of package-manager wrappers.
+- Node's built-in `node:test` runner hit sandbox `EPERM` spawning behavior here, so Phase 1 tests are implemented as an in-process TypeScript test script.
 
 ## Next steps
 
-- Review the PRD and implementation plan together and adjust any schema, runner, or command-surface decisions that should change before coding.
-- Start using `plan-executor` for work driven by `doc/plans/` documents and refine the skill after a few real executions.
-- Start Phase 1 from the plan: workspace bootstrap, versioned root manifest, and `doctor` preflight behavior.
-- Implement later phases in order: `skill-pack`, `scheduled-job`, `service`, then packaging and CI parity.
+- Start Phase 2 from `doc/plans/v1-implementation.md`: `new --kind skill-pack <name>`, `run <project>`, `verify <project>`, and the first safe-by-default project template.
+- Decide the durable artifact and run-record location before locking the Phase 2 output contract more deeply.
+- Revisit later whether to add a compiled TypeScript path or continue using Node 24's built-in type stripping as the internal implementation approach.

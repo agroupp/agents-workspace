@@ -1,0 +1,9 @@
+{
+  "name": "agents-workspace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "node --experimental-strip-types src/cli.ts",
+    "test:phase1": "node --experimental-strip-types tests/phase1.test.ts"
+  }
+}

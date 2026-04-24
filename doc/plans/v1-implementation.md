@@ -43,16 +43,16 @@ Build the first end-to-end workspace loop around `init` and `doctor`. A maintain
 
 ### Acceptance criteria
 
-- [ ] `init` creates a versioned root workspace manifest plus the baseline Codex-native workspace assets required by the contract.
-- [ ] The root manifest supports workspace-wide defaults, runner registration, and project discovery without assuming a specific application runtime.
-- [ ] `doctor` validates manifest structure, project root discovery, runner availability, and missing prerequisite configuration with clear non-zero failures.
-- [ ] A freshly initialized workspace can pass `doctor` without adding any project yet.
+- [x] `init` creates a versioned root workspace manifest plus the baseline Codex-native workspace assets required by the contract.
+- [x] The root manifest supports workspace-wide defaults, runner registration, and project discovery without assuming a specific application runtime.
+- [x] `doctor` validates manifest structure, project root discovery, runner availability, and missing prerequisite configuration with clear non-zero failures.
+- [x] A freshly initialized workspace can pass `doctor` without adding any project yet.
 
 ### Validation
 
-- [ ] Create a fresh workspace with `init`, then run `doctor` and confirm a clean pass.
-- [ ] Break one required manifest field and confirm `doctor` reports a targeted validation error.
-- [ ] Add a missing or invalid runner reference and confirm preflight fails before runtime execution begins.
+- [x] Create a fresh workspace with `init`, then run `doctor` and confirm a clean pass.
+- [x] Break one required manifest field and confirm `doctor` reports a targeted validation error.
+- [x] Add a missing or invalid runner reference and confirm preflight fails before runtime execution begins.
 
 ---
 
